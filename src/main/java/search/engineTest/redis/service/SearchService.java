@@ -27,8 +27,6 @@ public class SearchService {
     private HashOperations<String, String, String> hashOperations;
     public List<String> getRedisStringValue(String key) {
 
-//        HashOperations<String, String, String> hashOperations = redisTemplate.opsForHash();
-
         //검색으로 들어온 값
         ScanOptions scanOptions = ScanOptions.scanOptions()
                 .match(ASTERISK + key
@@ -48,7 +46,6 @@ public class SearchService {
 
 
     public void setData() {
-//        HashOperations<String, String, String> hashOperations = redisTemplate.opsForHash();
 
         if(redisTemplate.getExpire(SEARCH_KEY) < 0){
             List<Category> nameList = categoryRepository.findAll();
@@ -58,6 +55,5 @@ public class SearchService {
             redisTemplate.expire(SEARCH_KEY,TIME_LIMIT,TimeUnit.SECONDS);
         }
 
-//        redisTemplate.opsForValue().set(key, value, expiredTime, TimeUnit.MILLISECONDS);
     }
 }

@@ -63,6 +63,7 @@ class ProductRepositoryTest {
         em.flush();
         em.clear();
 
+        searchService.setData();
 
     }
 //
@@ -151,7 +152,6 @@ class ProductRepositoryTest {
     @DisplayName("Redis 시간 측정")
     public void findRedis() {
         long startTime = System.currentTimeMillis();
-        searchService.setData();
 
         for (int i = 0; i < 10000; i++) {
             List<String> list = searchService.getRedisStringValue("전");
