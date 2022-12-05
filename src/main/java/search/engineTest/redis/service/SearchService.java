@@ -1,6 +1,7 @@
 package search.engineTest.redis.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Service;
 import search.engineTest.entity.Category;
@@ -25,6 +26,8 @@ public class SearchService {
 
     @Resource(name = "redisTemplate")
     private HashOperations<String, String, String> hashOperations;
+
+    @Cacheable("StringValue")
     public List<String> getRedisStringValue(String key) {
 
         //검색으로 들어온 값
